@@ -51,6 +51,24 @@ public class Character {
 		health = Math.max(0.0f, health-amountToRemove);
 	}
 
+	public void change(int maxPercentChange)
+	{
+		float maxChange = maxPercentChange/100f;
+		
+		float changeInMorality = rand.nextFloat() * maxChange;
+		
+		if (maxPercentChange < 0)
+		{
+			morality = Math.max(0.0f, morality-changeInMorality);
+		}
+		else if (maxPercentChange > 0)
+		{
+			morality = Math.min(1.0f, health+changeInMorality);
+		}
+		else
+			return;
+	}
+
 	public String toString()
 	{
 		return ("Name: " + name + " \n" + 
