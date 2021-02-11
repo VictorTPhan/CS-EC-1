@@ -40,6 +40,8 @@ public class Character implements CharacterInterface{
 	 */
 	public boolean heal(int percentage)
 	{
+		checkIfWithinRange(percentage, 0, 100);
+		
 		if (health == 1.0f) return false;
 		{
 			//convert given integer into a percent
@@ -58,6 +60,8 @@ public class Character implements CharacterInterface{
 	 */
 	public boolean injure(int percentage)
 	{
+		checkIfWithinRange(percentage, 0, 100);
+		
 		if (health == 0.0f) return false;
 		else
 		{
@@ -78,6 +82,8 @@ public class Character implements CharacterInterface{
 	 */
 	public boolean change(int maxPercentChange)
 	{
+		checkIfWithinRange(maxPercentChange, -100, 100);
+		
 		//if morality at these values, it cannot change so return false
 		if (morality == -1.0f || maxPercentChange == 0 || morality == 1.0f) return false;
 		else
@@ -180,5 +186,10 @@ public class Character implements CharacterInterface{
 		else if (morality > 0.0f) return "slightly good";
 		else if (morality == 1.0f) return "good";
 		else return null;
+	}
+	
+	public void checkIfWithinRange(int num, int lowest, int highest)
+	{
+		if (num < lowest || num > highest) throw new IllegalStateException("Given percentage was not in range!");
 	}
 }

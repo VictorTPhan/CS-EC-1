@@ -39,6 +39,10 @@ public class CharacterClientTester {
 		//Changing Morality (0%)
 		System.out.println("I. Changing Morality (0%)");
 		change(testChar, 0);
+		
+		//Testing percent error
+		System.out.println("J. Incorrect input");
+		heal(testChar, 2000);
 	}
 	
 	/** Increases the character's health by a given percentage.
