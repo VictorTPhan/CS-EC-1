@@ -44,6 +44,7 @@ public class CharacterClientTester {
 		System.out.println("----------------------");
 		
 		//Changing Morality (Negative)
+		System.out.println("H. Changing Morality (Negative)");
 		if (!testChar.change(-100)) System.out.println("The morality of " + testChar.getName() + " did not change!");
 		else System.out.println(testChar.toString());
 		System.out.println("----------------------");

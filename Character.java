@@ -3,9 +3,9 @@ import java.util.Random;
 public class Character {
 	public static final Random rand = new Random();
 	
-	private String name;
-	private float height; //in meters
-	private float weight; //in pounds
+	private final String name;
+	private final float height; //in meters
+	private final float weight; //in pounds
 	private float morality; //ranges from -1 to 1, starts at 0
 	private float health; //ranges from 0 to 1, starts at 1
 	
@@ -46,8 +46,10 @@ public class Character {
 	{
 		if (health == 1.0f) return false;
 		{
+			//convert given integer into a percent
 			float amountToAdd = percentage/100f;
 			
+			//if too much health added, round back to 100
 			health = Math.min(1.0f, health+amountToAdd);
 			return true;
 		}
@@ -63,8 +65,10 @@ public class Character {
 		if (health == 0.0f) return false;
 		else
 		{
+			//convert given integer into a percent
 			float amountToRemove = percentage/100f;
 			
+			//if too much health removed, round back to 0
 			health = Math.max(0.0f, health-amountToRemove);
 			return true;	
 		}
@@ -78,19 +82,24 @@ public class Character {
 	 */
 	public boolean change(int maxPercentChange)
 	{
-		if (maxPercentChange == -1.0f || maxPercentChange == 0 || maxPercentChange == 1.0f) return false;
+		//if morality at these values, it cannot change so return false
+		if (morality == -1.0f || maxPercentChange == 0 || morality == 1.0f) return false;
 		else
 		{
+			//convert given integer into a percent
 			float maxChange = maxPercentChange/100f;
 			
+			//calculate random percent change with range [0, maxPercentChange/100)
 			float changeInMorality = rand.nextFloat() * maxChange;
 			
 			if (maxPercentChange < 0)
 			{
+				//if too much morality removed, round back to -1.0
 				morality = Math.max(-1.0f, morality+changeInMorality);
 			}
 			else if (maxPercentChange > 0)
 			{
+				//if too much morality added, round back to 1.0
 				morality = Math.min(1.0f, morality+changeInMorality);
 			}	
 			return true;
@@ -106,26 +115,47 @@ public class Character {
 				"Health: " + health + "\t(" + determineHealth() + ")");
 	}
 	
+	/** Getter method for name field
+	 * 
+	 * @return a copy of name (not a reference)
+	 */
 	public String getName()
 	{
-		return name;
+		String n = new String(name);
+		return n;
 	}
 	
+	/** Getter method for height field
+	 * 
+	 * @return the value of height
+	 */
 	public float getHeight()
 	{
 		return height;
 	}
 	
+	/** Getter method for weight field
+	 * 
+	 * @return the value of weight
+	 */
 	public float getWeight()
 	{
 		return weight;
 	}
 	
+	/** Getter method for health field
+	 * 
+	 * @return the value of health
+	 */
 	public float getHealth()
 	{
 		return health;
 	}
 	
+	/** Getter method for morality field
+	 * 
+	 * @return the value of morality
+	 */
 	public float getMorality()
 	{
 		return morality;
