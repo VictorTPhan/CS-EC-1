@@ -37,7 +37,7 @@ public class Character {
 		health = 1;
 	}
 	
-	/** Increases the player's health by a given percentage.
+	/** Increases the character's health by a given percentage.
 	 * 
 	 * @param percentage the amount to increase. Express this value as an integer, not a decimal. Only values between 0 and 100 are accepted.
 	 * @return true if health was added, false if health was already at 1.0.
@@ -53,7 +53,7 @@ public class Character {
 		}
 	}
 	
-	/** Decreases the player's health by a given percentage.
+	/** Decreases the character's health by a given percentage.
 	 * 
 	 * @param percentage the amount to decrease. Express this value as an integer, not a decimal. Only values between 0 and 100 are accepted.
 	 * @return true if health was removed, false if health was already at 0.0.
@@ -70,22 +70,31 @@ public class Character {
 		}
 	}
 	
-	public void change(int maxPercentChange)
+	/** Changes the character's morality morality by a random percentage based on a given percentage.
+	 * 
+	 * @param maxPercentChange the maximum amount to change the morality value by. A positive maxPercentChange increases the morality, 
+	 * 		  while a negative maxPercentChange decreases the morality. Express this value as an integer, not a decimal. Only values between -100 and 100 are accepted.
+	 * @return true if the morality changed, false if the morality did not change (it is either at -1.0 or 1.0 already or the user entered 0)
+	 */
+	public boolean change(int maxPercentChange)
 	{
-		float maxChange = maxPercentChange/100f;
-		
-		float changeInMorality = rand.nextFloat() * maxChange;
-		
-		if (maxPercentChange < 0)
-		{
-			morality = Math.max(-1.0f, morality+changeInMorality);
-		}
-		else if (maxPercentChange > 0)
-		{
-			morality = Math.min(1.0f, morality+changeInMorality);
-		}
+		if (maxPercentChange == -1.0f || maxPercentChange == 0 || maxPercentChange == 1.0f) return false;
 		else
-			return;
+		{
+			float maxChange = maxPercentChange/100f;
+			
+			float changeInMorality = rand.nextFloat() * maxChange;
+			
+			if (maxPercentChange < 0)
+			{
+				morality = Math.max(-1.0f, morality+changeInMorality);
+			}
+			else if (maxPercentChange > 0)
+			{
+				morality = Math.min(1.0f, morality+changeInMorality);
+			}	
+			return true;
+		}
 	}
 	
 	public String toString()
@@ -93,8 +102,8 @@ public class Character {
 		return ("Name: " + name + " \n" + 
 				"Height: " + height + " meters tall \n" +
 				"Weight: " + weight + " pounds \n" +
-				"Morality: " + morality + " \n" + 
-				"Health: " + health);
+				"Morality: " + morality + "\t(" + determineMorality() + ")" + " \n" + 
+				"Health: " + health + "\t(" + determineHealth() + ")");
 	}
 	
 	public String getName()
@@ -120,5 +129,30 @@ public class Character {
 	public float getMorality()
 	{
 		return morality;
+	}
+	
+	/** checks the health field
+	 * 
+	 * @return a String depending on the state of health, ranging from dead (0.0), healthy, and totally healthy (1.0)
+	 */
+	public String determineHealth()
+	{
+		if (health == 0.0f) return "dead";
+		else if (health == 1.0f) return "totally healthy";
+		else return "healthy";
+	}
+	
+	/** checks the morality field
+	 * 
+	 * @return a String depending on the state of morality, ranging from evil (-1.0), slightly evil, neutral (0.0), slightly good, and good (1.0);
+	 */
+	public String determineMorality()
+	{
+		if (morality == -1.0f) return "evil";
+		else if (morality < 0.0f) return "slightly evil";
+		else if (morality == 0.0f) return "neutral";
+		else if (morality > 0.0f) return "slightly good";
+		else if (morality == 1.0f) return "good";
+		else return null;
 	}
 }

@@ -15,7 +15,7 @@ public class CharacterClientTester {
 		
 		//Overhealing
 		System.out.println("C. Overhealing");
-		if (!testChar.heal(100)) System.out.println("The health of " + testChar.getName() + " is already full!");
+		if (!testChar.heal(100)) System.out.println("The health of " + testChar.getName() + " is totally healthy!");
 		else System.out.println(testChar.toString());
 		System.out.println("----------------------");
 		
@@ -33,26 +33,25 @@ public class CharacterClientTester {
 		
 		//Healing
 		System.out.println("F. Healing");
-		if (!testChar.heal(50)) System.out.println("The health of " + testChar.getName() + " is already full!");
+		if (!testChar.heal(50)) System.out.println("The health of " + testChar.getName() + " is totally healthy!");
 		else System.out.println(testChar.toString());
 		System.out.println("----------------------");
 		
 		//Changing Morality (Positive)
 		System.out.println("G. Changing Morality (Positive)");
-		testChar.change(100);
-		System.out.println(testChar.toString());
+		if (!testChar.change(100)) System.out.println("The morality of " + testChar.getName() + " did not change!");
+		else System.out.println(testChar.toString());
 		System.out.println("----------------------");
 		
 		//Changing Morality (Negative)
-		System.out.println("H. Changing Morality (Negative)");
-		testChar.change(-100);
-		System.out.println(testChar.toString());
+		if (!testChar.change(-100)) System.out.println("The morality of " + testChar.getName() + " did not change!");
+		else System.out.println(testChar.toString());
 		System.out.println("----------------------");
 		
 		//Changing Morality (0%)
 		System.out.println("I. Changing Morality (0%)");
-		testChar.change(0);
-		System.out.println(testChar.toString());
+		if (!testChar.change(0)) System.out.println("The morality of " + testChar.getName() + " did not change!");
+		else System.out.println(testChar.toString());
 		System.out.println("----------------------");
 	}
 }
