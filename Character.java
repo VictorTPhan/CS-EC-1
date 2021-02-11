@@ -36,21 +36,40 @@ public class Character {
 		//characters will start off totally healthy
 		health = 1;
 	}
-
-	public void heal(int percentage)
+	
+	/** Increases the player's health by a given percentage.
+	 * 
+	 * @param percentage the amount to increase. Express this value as an integer, not a decimal. Only values between 0 and 100 are accepted.
+	 * @return true if health was added, false if health was already at 1.0.
+	 */
+	public boolean heal(int percentage)
 	{
-		float amountToAdd = percentage/100f;
-		
-		health = Math.min(1.0f, health+amountToAdd);
+		if (health == 1.0f) return false;
+		{
+			float amountToAdd = percentage/100f;
+			
+			health = Math.min(1.0f, health+amountToAdd);
+			return true;
+		}
 	}
 	
-	public void injure(int percentage)
+	/** Decreases the player's health by a given percentage.
+	 * 
+	 * @param percentage the amount to decrease. Express this value as an integer, not a decimal. Only values between 0 and 100 are accepted.
+	 * @return true if health was removed, false if health was already at 0.0.
+	 */
+	public boolean injure(int percentage)
 	{
-		float amountToRemove = percentage/100f;
-		
-		health = Math.max(0.0f, health-amountToRemove);
+		if (health == 0.0f) return false;
+		else
+		{
+			float amountToRemove = percentage/100f;
+			
+			health = Math.max(0.0f, health-amountToRemove);
+			return true;	
+		}
 	}
-
+	
 	public void change(int maxPercentChange)
 	{
 		float maxChange = maxPercentChange/100f;
@@ -59,7 +78,7 @@ public class Character {
 		
 		if (maxPercentChange < 0)
 		{
-			morality = Math.max(0.0f, morality+changeInMorality);
+			morality = Math.max(-1.0f, morality+changeInMorality);
 		}
 		else if (maxPercentChange > 0)
 		{
@@ -68,7 +87,7 @@ public class Character {
 		else
 			return;
 	}
-
+	
 	public String toString()
 	{
 		return ("Name: " + name + " \n" + 
@@ -76,5 +95,30 @@ public class Character {
 				"Weight: " + weight + " pounds \n" +
 				"Morality: " + morality + " \n" + 
 				"Health: " + health);
+	}
+	
+	public String getName()
+	{
+		return name;
+	}
+	
+	public float getHeight()
+	{
+		return height;
+	}
+	
+	public float getWeight()
+	{
+		return weight;
+	}
+	
+	public float getHealth()
+	{
+		return health;
+	}
+	
+	public float getMorality()
+	{
+		return morality;
 	}
 }

@@ -15,26 +15,26 @@ public class CharacterClientTester {
 		
 		//Overhealing
 		System.out.println("C. Overhealing");
-		testChar.heal(100);
-		System.out.println(testChar.toString());
+		if (!testChar.heal(100)) System.out.println("The health of " + testChar.getName() + " is already full!");
+		else System.out.println(testChar.toString());
 		System.out.println("----------------------");
 		
 		//Taking damage
 		System.out.println("D. Taking Damage");
-		testChar.injure(50);
-		System.out.println(testChar.toString());
+		if (!testChar.injure(100)) System.out.println(testChar.getName() + " is already dead!");
+		else System.out.println(testChar.toString());
 		System.out.println("----------------------");
 		
 		//Overdamaging
 		System.out.println("E. Overdamaging");
-		testChar.injure(100);
-		System.out.println(testChar.toString());
+		if (!testChar.injure(100)) System.out.println(testChar.getName() + " is already dead!");
+		else System.out.println(testChar.toString());
 		System.out.println("----------------------");
 		
 		//Healing
 		System.out.println("F. Healing");
-		testChar.heal(50);
-		System.out.println(testChar.toString());
+		if (!testChar.heal(50)) System.out.println("The health of " + testChar.getName() + " is already full!");
+		else System.out.println(testChar.toString());
 		System.out.println("----------------------");
 		
 		//Changing Morality (Positive)
