@@ -167,7 +167,7 @@ public class Character implements CharacterInterface{
 	 * 
 	 * @return a String depending on the state of health, ranging from dead (0.0), healthy, and totally healthy (1.0)
 	 */
-	public String determineHealth()
+	private String determineHealth()
 	{
 		if (health == 0.0f) return "dead";
 		else if (health == 1.0f) return "totally healthy";
@@ -178,7 +178,7 @@ public class Character implements CharacterInterface{
 	 * 
 	 * @return a String depending on the state of morality, ranging from evil (-1.0), slightly evil, neutral (0.0), slightly good, and good (1.0);
 	 */
-	public String determineMorality()
+	private String determineMorality()
 	{
 		if (morality == -1.0f) return "evil";
 		else if (morality < 0.0f) return "slightly evil";
@@ -188,7 +188,7 @@ public class Character implements CharacterInterface{
 		else return null;
 	}
 	
-	public void checkIfWithinRange(int num, int lowest, int highest)
+	private void checkIfWithinRange(int num, int lowest, int highest)
 	{
 		if (num < lowest || num > highest) throw new IllegalStateException("Given percentage was not in range!");
 	}
