@@ -36,4 +36,13 @@ public class Character {
 		//characters will start off totally healthy
 		health = 1;
 	}
+
+	public String toString()
+	{
+		return ("Name: " + name + " \n" + 
+				"Height: " + height + " meters tall \n" +
+				"Weight: " + weight + " pounds \n" +
+				"Morality: " + morality + " \n" + 
+				"Health: " + health);
+	}
 }
