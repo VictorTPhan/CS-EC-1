@@ -59,11 +59,11 @@ public class Character {
 		
 		if (maxPercentChange < 0)
 		{
-			morality = Math.max(0.0f, morality-changeInMorality);
+			morality = Math.max(0.0f, morality+changeInMorality);
 		}
 		else if (maxPercentChange > 0)
 		{
-			morality = Math.min(1.0f, health+changeInMorality);
+			morality = Math.min(1.0f, morality+changeInMorality);
 		}
 		else
 			return;
