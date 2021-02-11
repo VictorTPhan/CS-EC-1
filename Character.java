@@ -37,6 +37,20 @@ public class Character {
 		health = 1;
 	}
 
+	public void heal(int percentage)
+	{
+		float amountToAdd = percentage/100f;
+		
+		health = Math.min(1.0f, health+amountToAdd);
+	}
+	
+	public void injure(int percentage)
+	{
+		float amountToRemove = percentage/100f;
+		
+		health = Math.max(0.0f, health-amountToRemove);
+	}
+
 	public String toString()
 	{
 		return ("Name: " + name + " \n" + 
