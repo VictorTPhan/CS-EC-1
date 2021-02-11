@@ -1,8 +1,4 @@
-import java.util.Random;
-
-public class Character {
-	public static final Random rand = new Random();
-	
+public class Character implements CharacterInterface{	
 	private final String name;
 	private final float height; //in meters
 	private final float weight; //in pounds
